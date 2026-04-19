@@ -1,0 +1,101 @@
+    Checking windows-sys v0.61.2
+    Checking anstyle-wincon v3.0.11
+    Checking anstyle-query v1.1.5
+    Checking anstream v1.0.0
+    Checking clap_builder v4.6.0
+    Checking clap v4.6.1
+    Checking wavebranch v0.1.0 (D:\w_projects\WaveBranch)
+warning: unused import: `File`
+ --> src\core\reset.rs:3:21
+  |
+3 | use std::fs::{self, File};
+  |                     ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `bytemuck`
+ --> src\core\reset.rs:4:5
+  |
+4 | use bytemuck;
+  |     ^^^^^^^^
+
+error[E0599]: no variant or associated item named `RepositoryError` found for enum `WaveBranchError` in the current scope
+  --> src\core\log.rs:17:37
+   |
+17 |         return Err(WaveBranchError::RepositoryError("HEAD pointer missing. Corrupt repository?".to_string()));
+   |                                     ^^^^^^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+   |
+  ::: src\error.rs:10:1
+   |
+10 | pub enum WaveBranchError {
+   | ------------------------ variant or associated item `RepositoryError` not found for this enum
+
+error[E0599]: no variant or associated item named `RepositoryError` found for enum `WaveBranchError` in the current scope
+  --> src\core\log.rs:67:49
+   |
+67 |             None => return Err(WaveBranchError::RepositoryError("Not a wavebranch repository.".to_string())),
+   |                                                 ^^^^^^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+   |
+  ::: src\error.rs:10:1
+   |
+10 | pub enum WaveBranchError {
+   | ------------------------ variant or associated item `RepositoryError` not found for this enum
+
+error[E0308]: `?` operator has incompatible types
+  --> src\core\reset.rs:70:37
+   |
+70 |             let payload: Vec<i16> = read_blob(repo_root, &entry.hash)?;
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Vec<i16>`, found `Blob`
+   |
+   = note: `?` operator cannot convert from `Blob` to `Vec<i16>`
+   = note: expected struct `Vec<i16>`
+              found struct `Blob`
+
+error[E0599]: no variant or associated item named `AudioError` found for enum `WaveBranchError` in the current scope
+   --> src\core\reset.rs:104:81
+    |
+104 |     let mut writer = WavWriter::create(path, spec).map_err(|e| WaveBranchError::AudioError(e.to_string()))?;
+    |                                                                                 ^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+    |
+   ::: src\error.rs:10:1
+    |
+ 10 | pub enum WaveBranchError {
+    | ------------------------ variant or associated item `AudioError` not found for this enum
+
+error[E0599]: no variant or associated item named `AudioError` found for enum `WaveBranchError` in the current scope
+   --> src\core\reset.rs:106:66
+    |
+106 |         writer.write_sample(sample).map_err(|e| WaveBranchError::AudioError(e.to_string()))?;
+    |                                                                  ^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+    |
+   ::: src\error.rs:10:1
+    |
+ 10 | pub enum WaveBranchError {
+    | ------------------------ variant or associated item `AudioError` not found for this enum
+
+error[E0599]: no variant or associated item named `AudioError` found for enum `WaveBranchError` in the current scope
+   --> src\core\reset.rs:108:52
+    |
+108 |     writer.finalize().map_err(|e| WaveBranchError::AudioError(e.to_string()))?;
+    |                                                    ^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+    |
+   ::: src\error.rs:10:1
+    |
+ 10 | pub enum WaveBranchError {
+    | ------------------------ variant or associated item `AudioError` not found for this enum
+
+error[E0599]: no variant or associated item named `RepositoryError` found for enum `WaveBranchError` in the current scope
+   --> src\core\reset.rs:120:49
+    |
+120 |             None => return Err(WaveBranchError::RepositoryError("Not a wavebranch repository.".to_string())),
+    |                                                 ^^^^^^^^^^^^^^^ variant or associated item not found in `WaveBranchError`
+    |
+   ::: src\error.rs:10:1
+    |
+ 10 | pub enum WaveBranchError {
+    | ------------------------ variant or associated item `RepositoryError` not found for this enum
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.
+warning: `wavebranch` (bin "wave") generated 2 warnings
+error: could not compile `wavebranch` (bin "wave") due to 7 previous errors; 2 warnings emitted

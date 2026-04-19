@@ -1,0 +1,17 @@
+# Rust Build Artifacts
+/target/
+.rustc_info.json
+CACHEDIR.TAG
+debug/
+
+# Cargo specific
+**/*.rs.bk
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Internal specific
+.wavebranch/
